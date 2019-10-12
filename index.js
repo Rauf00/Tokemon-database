@@ -2,12 +2,16 @@ const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 5000
 var app = express();
-
 const { Pool } = require('pg');
-var pool;
-pool = new Pool({
-  connectionString: "postgres://postgres:shimarov6929@localhost/assignment2"
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
 });
+// const { Pool } = require('pg');
+// var pool;
+// pool = new Pool({
+//   connectionString: "postgres://postgres:shimarov6929@localhost/assignment2"
+// });
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -15,6 +19,18 @@ app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {res.render('pages/index')});
+.get('/db', async (req, res) => {
+    try {
+      const client = await pool.connect()
+      const result = await client.query('SELECT * FROM test_table');
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
 app.get('/hello', (req,res) => { res.render('pages/hello')});
 app.get('/assignment2', (req,res) => { res.render('pages/tokemon')});
 
@@ -107,6 +123,22 @@ app.post('/changeTokemon', (req,res) => {
     res.render('pages/changeTokemon', results)
   });
 });
+
+app.post('/dreamTeam', (req,res) => {
+  //console.log(req);
+
+  pool.query(`UPDATE Tokemon SET ${columnChange} = ${valueChange} WHERE name = '${nameChange}'`, (err, result)=> {
+    console.log(req);
+    pool.query(`SELECT * FROM Tokemon`, (err, result)=> {
+      if (err)
+        res.end(err);
+      console.log("all tokemons showed");
+      var results = {'rows': result.rows };
+      console.log(results);
+      res.render('pages/showTokemon', results)
+    });
+  });
+
 
 
 

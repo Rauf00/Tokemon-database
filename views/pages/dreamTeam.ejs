@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>DREAM TEAM</title>
+  </head>
+  <body>
+    <% var max = 0;
+    rows.forEach((r) => {
+      if(r.total > max){
+        max = r.total;
+      }
+      %>
+      <tr>
+        <td><%= r.name %></td>
+      </tr>
+    <% }); %>
+  </body>
+</html>
