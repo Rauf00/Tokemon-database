@@ -1,0 +1,91 @@
+* {
+  font-family: "Arial", sans-serif;
+}
+body {background-color: #A7071E;}
+html, body
+{
+    height: 100%;
+}
+#white_box {
+  position: relative;
+  height: 90%;
+  margin: auto;
+  margin: 0px 40px;
+  background-color: white;
+  border: solid white;
+}
+#gradesInput{
+  float:right;
+  margin-right: 1%;
+}
+
+input.gradesTable{
+  width: 50px;
+}
+
+#firstRow{
+  background-color: #DAD8D8;
+}
+
+div.table{
+  position: absolute;
+  left: 2%;
+  width: 80%;
+  height: 80%;
+  border: solid white;
+  background-color: #E6F0F4;
+}
+
+#table1, th, td {
+  border: solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1%;
+  text-align: left;
+}
+
+#table1{
+  width: 90%;
+  margin: auto;
+}
+
+#table2{
+  border: solid black;
+  border-collapse: collapse;
+  width: 150px;
+}
+
+input{
+  width: 70%;
+}
+
+button{
+  float: right;
+  margin-right: 2%;
+  background-color:#A7071E;
+  color: white;
+  border-radius: 4px;
+  padding: 5px 12px;
+}
+
+p, h1, h2{
+  text-indent: 2%;
+}
+
+p.result{
+  float: left;
+  margin-left: 2%;
+  font-weight: bold;
+}
+
+#output{
+  float: left;
+  margin-left: 0%;
+  font-weight: bold;
+}
+
+p.result, h2{
+  color: #A7071E;
+}

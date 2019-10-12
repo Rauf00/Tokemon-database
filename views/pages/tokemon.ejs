@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tokemon</title>
+    <link rel="stylesheet" href="stylesheets/tokemon.css">
+  </head>
+  <body>
+    <h1>Tokemon Database</h1>
+
+    <h3>Add Tokemon</h3>
+    <form class="" action="/add" method="post">
+      <table>
+        <tr>
+          <td>Name</td>
+          <td><input type="text" name="name" value=""></td>
+        </tr>
+        <tr>
+          <td>Weight</td>
+          <td><input type="text" name="weight" value=""></td>
+        </tr>
+        <tr>
+          <td>Height:</td>
+          <td><input type="text" name="height" value=""></td>
+        </tr>
+
+        <tr>
+          <td>Fly:</td>
+          <td><input type="text" name="fly" value=""></td>
+        </tr>
+        <tr>
+          <td>Fight:</td>
+          <td><input type="text" name="fight" value=""</td>
+        </tr>
+        <tr>
+          <td>Fire:</td>
+          <td><input type="text" name="fire" value=""><br></td>
+        </tr>
+        <tr>
+          <td>Water:</td>
+          <td><input type="text" name="water" value=""></td>
+        </tr>
+        <tr>
+          <td>Electric</td>
+          <td><input type="text" name="electric" value=""></td>
+        </tr>
+        <tr>
+          <td>Frozen:</td>
+          <td><input type="text" name="frozen" value=""></td>
+        </tr>
+        <tr>
+          <td>Trainer:</td>
+          <td> <input type="text" name="trainer" value=""></td>
+        </tr>
+      </table>
+      <button type="submit" name="button">Add a Tokimon!</button><br>
+    </form>
+
+    <h3>Delete Tokemon</h3>
+    <form class="" action="/deleteTokemon" method="post">
+      Enter the name: <input type="text" name="deleteTokemon" value=""><br>
+      <button type="submit" name="button">Delete a Tokemon</button>
+    </form>
+
+    <h3>Show Tokemon</h3>
+    <form class="" action="/showOneTokemon" method="post">
+      Enter the name:<input type="text" name="nameFind" value=""><br>
+      <button type="submit" name="button">Show Tokemon</button>
+    </form>
+
+    <h3>Show All Tokemons</h3>
+    <form class="" action="/showTokemon" method="post">
+      <button type="submit" name="button">Show all Tokemons</button>
+    </form>
+    <h3>Change the Characteristics of Tokemon</h3>
+    <form class="" action="/changeTokemon" method="post">
+      <table>
+        <tr>
+          <td>Enter the name of Tokemon:</td>
+          <td><input type="text" name="nameChange" value=""></td>
+        </tr>
+        <tr>
+          <td>Enter the cathegory of change</td>
+          <td><input type="text" name="columnChange" value=""></td>
+        </tr>
+        <tr>
+          <td>Enter the value:</td>
+          <td><input type="text" name="valueChange" value=""></td>
+        </tr>
+      </table>
+      <button type="submit" name="button">Change</button>
+    </form>
+    
+    <h3>Create a Dream Team!</h3>
+    <form class="" action="/dreamTeam" method="post">
+      <button type="submit" name="button">Create!</button>
+    </form>
+
+  </body>
+</html>

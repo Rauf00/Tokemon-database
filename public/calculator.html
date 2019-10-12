@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/stylesheets/calculator.css">
+    <script src="/js/calculator.js" defer> //defer - load html before js
+    </script>
+  </head>
+  <body>
+    <div id = "white_box">
+      <h1>Grade Calculator</h1>
+      <div class="table">
+        <h2>Activities</h2>
+        <p>Give grades to the numeric activities</p>
+
+        <table id = "table1">
+          <tr id = "firstRow">
+            <th>Name</th>
+            <th>Short name</th>
+            <th>Weight</th>
+            <th>Grade</th>
+            <th>Percent</th>
+            <th>Letter Grade</th>
+          </tr>
+          <tr>
+            <th>Activity 1</th>
+            <th>A1</th>
+            <th><input type="text" name="weight_1" value = ""></th>
+            <th><input type="text" name="grade_1" value = "">/<br><input type="text" name="outOf_1" value = "" ></th>
+            <th id = "percentage_1"></th>
+            <th id = "letter1"></th>
+          </tr>
+          <tr>
+            <th>Activity 2</th>
+            <th>A2</th>
+            <th><input type="text" name="weight_2"></th>
+            <th><input type="text" name="grade_2">/<br><input type="text" name="outOf_2"></th>
+            <th id = "percentage_2"></th>
+            <th id = "letter2"></th>
+          </tr>
+          <tr>
+            <th>Activity 3</th>
+            <th>A3</th>
+            <th><input type="text" name="weight_3"></th>
+            <th><input type="text" name="grade_3">/<br><input type="text" name="outOf_3"></th>
+            <th id = "percentage_3"></th>
+            <th id = "letter3"></th>
+          </tr>
+          <tr>
+            <th>Activity 4</th>
+            <th>A4</th>
+            <th><input type="text" name="weight_4"></th>
+            <th><input type="text" name="grade_4">/<br><input type="text" name="outOf_4"></th>
+            <th id = "percentage_4"></th>
+            <th id = "letter4"></th>
+          </tr>
+        </table>
+        <p class = "result">Result</p> <br>
+        <button type="button" name="button1" onclick="mean()">MEAN</button>
+        <button type="button" name="button2" onclick="weighted()">WEIGHTED</button>
+
+        <button type = "button" name="button3" onclick="clearr()">CLEAR</button>
+        <p id = "output"></p><br><br><br>
+
+      </div>
+
+
+      <div id = "gradesInput">
+        Enter the grading scale:<br>
+        <table id = "table2">
+          <tr>
+            <th> A-/A/A+:</th>
+            <th><input class = "gradesTable" id = "gradesTable1" type="text" name="" value="" placeholder="to"><br><input class = "gradesTable" id = "gradesTable11" type="text" name="" value="" placeholder="from"></th>
+          </tr>
+          <tr>
+            <th> B-/B/B+:</th>
+            <th><input class = "gradesTable" id = "gradesTable2" type="text" name="" value="" placeholder="to"><input class = "gradesTable" id = "gradesTable22" type="text" name="" value="" placeholder="from"></th>
+          </tr>
+          <tr>
+            <th> C-/C/C+:</th>
+            <th><input class = "gradesTable" id = "gradesTable3" type="text" name="" value="" placeholder="to"><input class = "gradesTable" id = "gradesTable33" type="text" name="" value="" placeholder="from"></th>
+          </tr>
+          <tr>
+            <th> D-/D/D+:</th>
+            <th><input class = "gradesTable" id = "gradesTable4" type="text" name="" value="" placeholder="to"><input class = "gradesTable" id = "gradesTable44" type="text" name="" value="" placeholder="from"></th>
+          </tr>
+          <tr>
+            <th> F:</th>
+            <th><input class = "gradesTable" id = "gradesTable5" type="text" name="" value="" placeholder="to"><input class = "gradesTable" id = "gradesTable55" type="text" name="" value="" placeholder="from"></th>
+          </tr>
+        </table>
+      </div>
+
+
+    </div>
+
+
+
+  </body>
+</html>
