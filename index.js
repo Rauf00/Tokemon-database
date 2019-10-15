@@ -26,7 +26,7 @@ app.get('/db', async (req, res) => {
       console.error(err);
       res.send("Error " + err);
     }
-  })
+  });
 app.get('/hello', (req,res) => { res.render('pages/hello')});
 app.get('/assignment2', (req,res) => { res.render('pages/tokemon')});
 
