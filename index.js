@@ -5,7 +5,7 @@ var app = express();
 
 const { Pool } = require('pg');
 const pool = new Pool({
-  connectionString: "postgres://obrxjfckxbdfxz:efc6f16a180acc4cb3480ddb1d603596f73ecd2adbe5567e47f6e0ca6a6d5756@ec2-174-129-231-116.compute-1.amazonaws.com:5432/d36o2ia71e1cdn",
+  connectionString: process.env.DATABASE_URL,
   ssl: true
 });
 
