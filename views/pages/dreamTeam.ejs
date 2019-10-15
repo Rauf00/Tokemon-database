@@ -1,19 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
     <meta charset="utf-8">
-    <title>DREAM TEAM</title>
+    <title>SHOW ALL</title>
+    <link rel="stylesheet" href="/stylesheets/showTokemon.css">
   </head>
   <body>
-    <% var max = 0;
-    rows.forEach((r) => {
-      if(r.total > max){
-        max = r.total;
-      }
-      %>
+    <h1>YOUR 3 STRONGEST TOKEMONS ARE:</h1>
+    <center>
+    <table>
       <tr>
-        <td><%= r.name %></td>
+        <th>Name</th>
+        <th>Weight</th>
+        <th>Height</th>
+        <th>Fly</th>
+        <th>Fight</th>
+        <th>Fire</th>
+        <th>Water</th>
+        <th>Electric</th>
+        <th>Frozen</th>
+        <th>Total</th>
+        <th>Trainer</th>
       </tr>
-    <% }); %>
+      <% rows.forEach((r) => { %>
+        <tr>
+          <td><%= r.name %></td>
+          <td><%= r.weight %></td>
+          <td><%= r.height %></td>
+          <td><%= r.fly %></td>
+          <td><%= r.fight %></td>
+          <td><%= r.fire %></td>
+          <td><%= r.water %></td>
+          <td><%= r.electric %></td>
+          <td><%= r.frozen %></td>
+          <td><%= r.total %></td>
+          <td><%= r.trainer %></td>
+        </tr>
+      <% }); %>
+
+    </table>
+  </center>
+
+    <form>
+         <input type="button" onclick="window.location.href = 'http://localhost:5000/assignment2';" value="Go Home"/>
+    </form>
   </body>
 </html>
