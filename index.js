@@ -11,7 +11,8 @@ var app = express();
 
 const { Pool } = require('pg');
 const pool = new Pool({
-  connectionString: "postgres://postgres:shimarov6929@localhost/assignment2"
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -20,18 +21,6 @@ app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {res.render('pages/index')});
-// app.get('/db', async (req, res) => {
-//     try {
-//       const client = await pool.connect()
-//       const result = await client.query(`SELECT * FROM test_table`);
-//       const results = { 'results': (result) ? result.rows : null};
-//       res.render('pages/db', results );
-//       client.release();
-//     } catch (err) {
-//       console.error(err);
-//       res.send("Error " + err);
-//     }
-//   });
 app.get('/hello', (req,res) => { res.render('pages/hello')});
 app.get('/assignment2', (req,res) => { res.render('pages/tokemon')});
 
