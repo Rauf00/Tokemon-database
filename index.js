@@ -110,7 +110,8 @@ app.post('/changeTokemon', (req,res) => {
   }
 
   else{
-    res.send(`Error: Invalid cathegory`);
+    var results = {};
+    res.render('pages/errorChange', results)
   }
 });
 
