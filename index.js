@@ -3,17 +3,16 @@ const path = require('path');
 const PORT = process.env.PORT || 5000
 var app = express();
 
+const { Pool } = require('pg');
+const pool = new Pool({
+connectionString: "postgres:shimarov6929@localhost/assignment2"
+});
+
 // const { Pool } = require('pg');
 // const pool = new Pool({
 //   connectionString: process.env.DATABASE_URL,
 //   ssl: true
 // });
-
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -100,7 +99,7 @@ app.post('/changeTokemon', (req,res) => {
       res.render('pages/changeTokemon', results)
     });
   }
-  else if{
+  else if ((columnChange == "height") || (columnChange == "weight") || (columnChange == "height") || (columnChange == "fly") || (columnChange == "fight") || (columnChange == "fire") || (columnChange == "water") || (columnChange == "electric") || (columnChange == "frozen")){
     pool.query(`UPDATE Tokemon SET total = ((SELECT total FROM Tokemon WHERE name = '${nameChange}') - (SELECT ${columnChange} FROM Tokemon WHERE name = '${nameChange}')) WHERE name = '${nameChange}'; UPDATE Tokemon SET ${columnChange} = '${valueChange}' WHERE name = '${nameChange}'; UPDATE Tokemon SET total = ((SELECT total FROM Tokemon WHERE name = '${nameChange}') + ${valueChange}) WHERE name = '${nameChange}'`, (err, result)=> {
       if (err)
         res.end(err);
@@ -109,6 +108,7 @@ app.post('/changeTokemon', (req,res) => {
       res.render('pages/changeTokemon', results)
     });
   }
+
   else{
     res.send(`Error: Invalid cathegory`);
   }
