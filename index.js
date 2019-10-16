@@ -111,7 +111,7 @@ app.post('/changeTokemon', (req,res) => {
 
   else{
     var results = {};
-    res.render('pages/errorChange', results)
+    res.render('pages/errorChange', results);
   }
 });
 
