@@ -3,10 +3,15 @@ const path = require('path');
 const PORT = process.env.PORT || 5000
 var app = express();
 
+// const { Pool } = require('pg');
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true
+// });
+
 const { Pool } = require('pg');
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
+  connectionString: "postgres://postgres:shimarov6929@localhost/assignment2"
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -15,18 +20,18 @@ app.use(express.urlencoded({ extended: false }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {res.render('pages/index')});
-app.get('/db', async (req, res) => {
-    try {
-      const client = await pool.connect()
-      const result = await client.query(`SELECT * FROM test_table`);
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  });
+// app.get('/db', async (req, res) => {
+//     try {
+//       const client = await pool.connect()
+//       const result = await client.query(`SELECT * FROM test_table`);
+//       const results = { 'results': (result) ? result.rows : null};
+//       res.render('pages/db', results );
+//       client.release();
+//     } catch (err) {
+//       console.error(err);
+//       res.send("Error " + err);
+//     }
+//   });
 app.get('/hello', (req,res) => { res.render('pages/hello')});
 app.get('/assignment2', (req,res) => { res.render('pages/tokemon')});
 
@@ -79,6 +84,16 @@ app.post('/showOneTokemon', (req,res) => {
     console.log("One Tokemon is showed");
     var results = {'rowAll': result.rows, 'nameF': req.body.nameFind };
     res.render('pages/showOneTokemon', results)
+  });
+});
+
+app.post('/showOneTokemonMore', (req,res) => {
+  pool.query(`SELECT * FROM Tokemon `, (err, result)=> {
+    if (err)
+      res.end(err);
+    console.log("One Tokemon is showed");
+    var resultsMore = {'rowAllMore': result.rows, 'nameFMore': req.body.nameFMore };
+    res.render('pages/showOneTokemonMore', resultsMore)
   });
 });
 

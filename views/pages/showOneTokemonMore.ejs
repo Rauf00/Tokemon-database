@@ -2,21 +2,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Show One Tokemon</title>
+    <title>Show More</title>
     <link rel="stylesheet" href="/stylesheets/showOneTokemon.css">
   </head>
   <body>
-
-    <% rowAll.forEach((r) => {
-      if(r.name == nameF){%>
+    <% rowAllMore.forEach((r) => {
+      if(r.name == nameFMore){%>
         <h1><%= r.name %>'s Characteristics</h1>
         <h3>Height: <%= r.height %></h3>
         <h3>Weight: <%= r.weight %></h3>
-        <form class="" action="showOneTokemonMore" method="post">
-          Enter the name of tokemon to see more: <input type="text" name="nameFMore" value="">
-          <button type="submit" name="button">More</button>
-        </form>
-        <!-- <table>
+        <table>
           <tr>
             <th><img src="pictures/fly.jpg" width = "200" height = "200"></th>
             <th><img src="pictures/fight.jpg" width = "200" height = "200"></th>
@@ -33,7 +28,7 @@
           <td><b><%= r.electric %></b></td>
           <td><b><%= r.frozen %></b></td>
         </tr>
-    </table> -->
+    </table>
     <h3>Trainer: <%= r.trainer %></h3>
     <h2>Total: <%= r.total %></h2>
     <% }}); %>
