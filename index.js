@@ -35,13 +35,19 @@ app.post('/add', (req,res) => {
   var frozen = req.body.frozen;
   var total = parseInt(weight)+parseInt(height)+parseInt(fly)+parseInt(fight)+parseInt(fire)+parseInt(water)+parseInt(electric)+parseInt(frozen);
   var trainer = req.body.trainer;
-  pool.query(`INSERT INTO Tokemon (name, weight, height, fly, fight, fire, water, electric, frozen, total, trainer) VALUES ('${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`, (err, result)=> {
-    if (err)
-      res.end(err);
-    console.log("Tokemon is added");
-    var results = {'nameAdd': req.body.name };
-    res.render('pages/add', results)
-});
+  if((name === "") || (weight === "") || (height === "") || (fly === "") || (fight === "") || (fire === "") || (water === "") || (electric === "") || (frozen === "") || (trainer === "")){
+    var results = {};
+    res.render('pages/errorAdd', results)
+  }
+  else{
+    pool.query(`INSERT INTO Tokemon (name, weight, height, fly, fight, fire, water, electric, frozen, total, trainer) VALUES ('${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`, (err, result)=> {
+      if (err)
+        res.end(err);
+      console.log("Tokemon is added");
+      var results = {'nameAdd': req.body.name };
+      res.render('pages/add', results)
+    });
+  }
 });
 
 app.post('/deleteTokemon', (req,res) => {
