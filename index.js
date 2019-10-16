@@ -3,16 +3,16 @@ const path = require('path');
 const PORT = process.env.PORT || 5000
 var app = express();
 
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: "postgres://postgres:shimarov6929@localhost/assignment2"
-});
-
 // const { Pool } = require('pg');
 // const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: true
+//   connectionString: "postgres://postgres:shimarov6929@localhost/assignment2"
 // });
+
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
