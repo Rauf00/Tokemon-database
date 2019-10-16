@@ -91,7 +91,7 @@ app.post('/changeTokemon', (req,res) => {
   var columnChange = req.body.columnChange;
   var valueChange = req.body.valueChange;
   var nameChange = req.body.nameChange;
-  if(columnChange == 'trainer'){
+  if(columnChange == "trainer"){
     pool.query(`UPDATE Tokemon SET ${columnChange} = '${valueChange}' WHERE name = '${nameChange}'`, (err, result)=> {
       if (err)
         res.end(err);
