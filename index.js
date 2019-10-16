@@ -100,7 +100,7 @@ app.post('/changeTokemon', (req,res) => {
       res.render('pages/changeTokemon', results)
     });
   }
-  else{
+  else if{
     pool.query(`UPDATE Tokemon SET total = ((SELECT total FROM Tokemon WHERE name = '${nameChange}') - (SELECT ${columnChange} FROM Tokemon WHERE name = '${nameChange}')) WHERE name = '${nameChange}'; UPDATE Tokemon SET ${columnChange} = '${valueChange}' WHERE name = '${nameChange}'; UPDATE Tokemon SET total = ((SELECT total FROM Tokemon WHERE name = '${nameChange}') + ${valueChange}) WHERE name = '${nameChange}'`, (err, result)=> {
       if (err)
         res.end(err);
@@ -108,6 +108,9 @@ app.post('/changeTokemon', (req,res) => {
       var results = {'col': columnChange, 'val': valueChange, 'nam': nameChange};
       res.render('pages/changeTokemon', results)
     });
+  }
+  else{
+    res.send(`Error: Invalid cathegory`);
   }
 });
 
