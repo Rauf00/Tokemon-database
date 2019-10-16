@@ -3,16 +3,16 @@ const path = require('path');
 const PORT = process.env.PORT || 5000
 var app = express();
 
-// const { Pool } = require('pg');
-// const pool = new Pool({
-//   connectionString: "postgres://postgres:shimarov6929@localhost/assignment2"
-// });
-
 const { Pool } = require('pg');
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
+  connectionString: "postgres://postgres:shimarov6929@localhost/assignment2"
 });
+
+// const { Pool } = require('pg');
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true
+// });
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -37,7 +37,7 @@ app.post('/add', (req,res) => {
   var trainer = req.body.trainer;
   if((name === "") || (weight === "") || (height === "") || (fly === "") || (fight === "") || (fire === "") || (water === "") || (electric === "") || (frozen === "") || (trainer === "")){
     var results = {};
-    res.render('pages/errorAdd', results)
+    res.render('pages/errorAdd', results);
   }
   else{
     pool.query(`INSERT INTO Tokemon (name, weight, height, fly, fight, fire, water, electric, frozen, total, trainer) VALUES ('${name}', ${weight}, ${height}, ${fly}, ${fight}, ${fire}, ${water}, ${electric}, ${frozen}, ${total}, '${trainer}')`, (err, result)=> {
@@ -52,13 +52,19 @@ app.post('/add', (req,res) => {
 
 app.post('/deleteTokemon', (req,res) => {
   var deleteTokemon = req.body.deleteTokemon;
+  if(deleteTokemon === ""){
+    var results = {};
+    res.render('pages/errorDelete', results);
+  }
+  else{
   pool.query(`DELETE FROM Tokemon WHERE name = '${deleteTokemon}'`, (err, result)=> {
     if (err)
       res.end(err);
     console.log("Tokemon is deleted");
     var results = {'nameDelete': req.body.deleteTokemon };
-    res.render('pages/deleteTokemon', results)
+    res.render('pages/deleteTokemon', results);
   });
+}
 });
 
 app.post('/showTokemon', (req,res) => {
@@ -67,7 +73,7 @@ app.post('/showTokemon', (req,res) => {
       res.end(err);
     console.log("All tokemons are showed");
     var results = {'rows': result.rows };
-    res.render('pages/showTokemon', results)
+    res.render('pages/showTokemon', results);
   });
 });
 
@@ -77,7 +83,7 @@ app.post('/showOneTokemon', (req,res) => {
       res.end(err);
     console.log("One Tokemon is showed");
     var results = {'rowAll': result.rows, 'nameF': req.body.nameFind };
-    res.render('pages/showOneTokemon', results)
+    res.render('pages/showOneTokemon', results);
   });
 });
 
@@ -87,7 +93,7 @@ app.post('/showOneTokemonMore', (req,res) => {
       res.end(err);
     console.log("One Tokemon is showed");
     var resultsMore = {'rowAllMore': result.rows, 'nameFMore': req.body.nameFMore };
-    res.render('pages/showOneTokemonMore', resultsMore)
+    res.render('pages/showOneTokemonMore', resultsMore);
   });
 });
 
@@ -102,7 +108,7 @@ app.post('/changeTokemon', (req,res) => {
         res.end(err);
       console.log("Tokemon is changed");
       var results = {'col': columnChange, 'val': valueChange, 'nam': nameChange};
-      res.render('pages/changeTokemon', results)
+      res.render('pages/changeTokemon', results);
     });
   }
   else if ((columnChange == 'weight') || (columnChange == 'height') || (columnChange == 'fly') || (columnChange == 'fight') || (columnChange == 'fire') || (columnChange == 'water') || (columnChange == 'electric') || (columnChange == 'frozen') || (columnChange == 'trainer')){
@@ -111,12 +117,12 @@ app.post('/changeTokemon', (req,res) => {
         res.end(err);
       console.log("Tokemon is changed");
       var results = {'col': columnChange, 'val': valueChange, 'nam': nameChange};
-      res.render('pages/changeTokemon', results)
+      res.render('pages/changeTokemon', results);
     });
   }
   else{
     var results = {'col': columnChange, 'val': valueChange, 'nam': nameChange};
-    res.render('pages/errorChange', results)
+    res.render('pages/errorChange', results);
   }
 });
 
@@ -127,7 +133,7 @@ app.post('/dreamTeam', (req,res) => {
       res.end(err);
     console.log("The champion is showed");
     var results = {'rows': result.rows };
-    res.render('pages/dreamTeam', results)
+    res.render('pages/dreamTeam', results);
     });
   });
 
